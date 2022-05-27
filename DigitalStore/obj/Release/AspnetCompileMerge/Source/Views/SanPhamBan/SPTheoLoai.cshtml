@@ -1,0 +1,83 @@
+﻿@using DigitalStore.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<SANPHAM>
+@{
+    ViewBag.Title = "Sản Phẩm Theo Loại";
+    Layout = "~/Views/Shared/New.cshtml";
+}
+<body>
+    <section class="food_section">
+        <div class="container">
+            <div class="filters-content">
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-sm-6 col-lg-6 all pizza">
+
+                            <div class="box" style="margin-bottom:20px">
+                                <div>
+                                    <div class="img-box">
+                                        <a href="@Url.Action("Details", "Home", new { id = item.MASANPHAM })">
+                                            <img src="@item.HINH" alt="thumbnails" />
+                                        </a>
+
+                                    </div>
+                                    <div class="detail-box">
+                                        <h5>
+                                            @item.TENSANPHAM
+                                        </h5>
+
+                                        <div class="options">
+                                            <h6>
+                                                <bdo>$</bdo>@String.Format("{0:0,0}", item.GIABAN) <bdo>VNĐ</bdo>
+                                            </h6>
+                                            <button class="btnDatMua" data-id="@item.MASANPHAM">Đặt Mua</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+
+    Trang @(Model.PageCount<Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+    </div>
+    <style>
+        .MenuTrang li > a {
+            display: inline-block;
+            padding: 5px 14px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin-top: 10px;
+        }
+    </style>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(".btnDatMua").click(function () {
+        console.log("hihihi");
+        var id = $(this).attr("data-id")
+        $.ajax({
+
+            type: "GET",
+            data: { id: id },
+            url: "/GioHang/ThemGioHang",
+            success: function (status) {
+
+                alert("Đã thêm vào giỏ hàng")
+            },
+            error: function (err) {
+                alert('Error ', err.statusText);
+            }
+        })
+    })
+
+</script>
+

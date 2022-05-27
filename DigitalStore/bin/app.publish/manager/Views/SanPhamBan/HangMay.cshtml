@@ -1,0 +1,10 @@
+﻿@model IEnumerable<DigitalStore.Models.NHACUNGCAP>
+<p class="lead">HÃNG MÁY</p>
+<div class="list-group">
+    @foreach (var item in Model)
+    {
+        <a href="@Url.Action("SPTheoHang","SanPhamBan", new {id = item.MANCC})" class="list-group-item">
+            @item.TENNCCC
+        </a>
+    }
+</div>

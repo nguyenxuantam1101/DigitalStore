@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DigitalStoreConnectionString-Web.config Connection String" description="DigitalStoreConnectionString Connection String used in web.config by the application to access the database." defaultValue="Data Source=LAPTOP-NXT\SQLSERVER;Initial Catalog=DigitalStore;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\2022\\DigitalStore\\DigitalStore\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DigitalStoreConnectionString']/@connectionString" />
+  </parameter>
+</parameters>
